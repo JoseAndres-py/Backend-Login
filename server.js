@@ -3,7 +3,9 @@ debe importar como se observa en la siguiente linea, con el nombre del archivo j
 que contiene la logica */
 //const controller = require('./controller/nombredelcontrollador.js');
 const express = require('express');
+const morgan = require('morgan');
 const db = require('./models');
+const apiRouter = require('./routes');
 const app = express()
 const bodyParser = require('body-parser');
 app.use(function(req, res, next) {
@@ -12,7 +14,8 @@ app.use(function(req, res, next) {
     next();
 });
 
-
+// Middelware morgan - Peticiones
+app.use(morgan('dev'));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -24,9 +27,15 @@ app.get('/', function(req, res) {
     console.log("Estructura base del proyecto backend");
     res.send("Estructura base del proyecto backend");
 });
-const port = 3000
-app.listen(port, () => {
-    console.log(`Running on http://localhost:${port}`)
+
+// Ruta API 
+app.use('/api', apiRouter);
+
+
+app.set('PORT', 3000);
+
+app.listen(app.get('PORT'), () => {
+    console.log(`Running on http://localhost:${app.get('PORT')}`)
 })
 
 module.exports = app;
