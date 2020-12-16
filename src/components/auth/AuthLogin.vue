@@ -7,13 +7,15 @@
           style="margin-top: 70px; height: auto; padding-top: 100px !important"
           @submit.prevent="loginUser"
         >
-          <h1 class="h3 mb-3 font-weight-normal" style="textalign: center">
-            Iniciar de sesión
+        
+          <h1 class="h3 mb-4 font-weight-normal" style="textalign: center">
+            Iniciar Sesión
           </h1>
+        
           <input
             type="text"
             id="email"
-            class="form-control mb-5"
+            class="form-control mb-4"
             placeholder="Email"
             v-model="login.email"
           />
@@ -21,22 +23,20 @@
           <input
             type="password"
             id="password"
-            class="form-control mb-5"
+            class="form-control mb-4"
             placeholder="Contraseña"
             v-model="login.password"
           />
           <!-- inicio sesion button -->
           <center>
-            <button class="btn btn-primary btn-block w-75 my4" type="submit">
-              Inicio de sesion
+            <button class="btn btn-info btn-block w-75 my4" type="submit">
+              Ingresar
             </button>
           </center>
         </form>
       </div>
     </div>
-  <pre>{{login}}</pre>
   </div>
-
 </template>
 
 <script>
@@ -56,14 +56,14 @@ export default {
       try {
         let response = await this.$http.post("/api/auth/signin", this.login);
         console.log(response.data);
-        let token = response.data.tokenReturn;
+        let token = response.data.accessToken;
         localStorage.setItem("jwt", token);
         if (token) {
-          swal("Exitoso", "login exitoso", "success");
+          swal("Exitoso", "Ingreso correcto", "success");
           this.$router.push("/panel");
         }
       } catch (err) {
-        swal("Error", "datos incorrectos", "error");
+        swal("Error", "Datos incorrectos", "error");
         console.log(err.response);
       }
     },

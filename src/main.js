@@ -4,7 +4,6 @@ import router from "./router";
 import "bootstrap/dist/css/bootstrap.css";
 import axios from "axios";
 const base = axios.create({
-//  baseURL: "https://glacial-everglades-74306.herokuapp.com"
  baseURL: "http://localhost:3000"
 });
 
