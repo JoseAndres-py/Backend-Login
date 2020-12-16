@@ -11,14 +11,6 @@ const routes = [
       import(/* webpackChunkName: "login" */ "../views/Login.vue")
   },
   {
-    path: "/home",
-    name: "Home",
-    component: () => import(/* webpackChunkName: "home" */ "../views/Home.vue"),
-    meta: {
-      requieresAuth: true
-    }
-  },
-  {
     path: "/panel",
     name: "Panel",
     component: () =>
