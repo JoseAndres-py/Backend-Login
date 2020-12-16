@@ -34,39 +34,40 @@
         </form>
       </div>
     </div>
-  <pre>{{login}}</pre>
+    <pre>{{ login }}</pre>
   </div>
-
 </template>
 
 <script>
 import swal from "sweetalert";
-
+import jwt_decode from "jwt-decode"; //Importar el desencriptador
 export default {
   data() {
     return {
       login: {
         email: "",
-        password: "",
-      },
+        password: ""
+      }
     };
   },
   methods: {
     async loginUser() {
       try {
         let response = await this.$http.post("/api/auth/signin", this.login);
-        console.log(response.data);
-        let token = response.data.tokenReturn;
+        let token = response.data.accessToken;
+        let user = jwt_decode(token); //desencripta el token
+
         localStorage.setItem("jwt", token);
+        localStorage.setItem("user", JSON.stringify(user));
         if (token) {
           swal("Exitoso", "login exitoso", "success");
           this.$router.push("/panel");
         }
       } catch (err) {
-        swal("Error", "datos incorrectos", "error");
+        swal("Error", "Datos incorrectos", "error");
         console.log(err.response);
       }
-    },
-  },
+    }
+  }
 };
 </script>
