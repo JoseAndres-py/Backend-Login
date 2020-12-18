@@ -1,42 +1,35 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6 offset-lg-3 col-sm-10 offset-sm-1">
-        <form
-          class="text-center border border-primary p-5"
-          style="margin-top: 70px; height: auto; padding-top: 100px !important"
-          @submit.prevent="loginUser"
-        >
-        
-          <h1 class="h3 mb-4 font-weight-normal" style="textalign: center">
-            Iniciar Sesión
-          </h1>
-        
-          <input
-            type="text"
-            id="email"
-            class="form-control mb-4"
-            placeholder="Email"
-            v-model="login.email"
-          />
-          <!-- Password -->
-          <input
-            type="password"
-            id="password"
-            class="form-control mb-4"
-            placeholder="Contraseña"
-            v-model="login.password"
-          />
-          <!-- inicio sesion button -->
-          <center>
-            <button class="btn btn-info btn-block w-75 my4" type="submit">
-              Ingresar
-            </button>
-          </center>
-        </form>
-      </div>
-    </div>
-  </div>
+    <div class="limiter">
+		<div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+			<div class="wrap-login100">
+				<form class="login100-form validate-form" @submit.prevent="loginUser">
+					<span class="login100-form-logo">
+						<i class="zmdi zmdi-account-circle"></i>
+					</span>
+
+					<span class="login100-form-title p-b-34 p-t-27">
+						Inicio
+					</span>
+
+					<div class="wrap-input100 validate-input" data-validate = "Correo inválido">
+						<input class="input100" name="username" type="email" placeholder="Correo electrónico" v-model="login.email">
+						<span class="focus-input100" data-placeholder=""></span>
+					</div>
+
+					<div class="wrap-input100 validate-input" data-validate="Contraseña Invalida">
+						<input class="input100" type="password" name="pass" placeholder="Contraseña" v-model="login.password">
+						<span class="focus-input100" data-placeholder=""></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button class="login100-form-btn">
+							Ingreso
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </template>
 
 <script>
