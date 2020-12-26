@@ -36,7 +36,7 @@ res.status(401).send({ auth: false, accessToken: null, reason: "Invalid Password
 
 En el directorio config/config.json encontrarán las credenciales para la conexión de las bases de datos de la siguiente manera:
 
-```js
+```json
 {
     "development": {
         "username": "xxxxxxxxx",
